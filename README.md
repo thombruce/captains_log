@@ -16,3 +16,28 @@ This project rocks and uses MIT-LICENSE.
 
 Note: It is recommended that you provide the version number as breaking changes may be released with minor version bumps.
 
+## Usage
+
+Captain's Log evaluates lines of Ruby embedded in larger bodies of texts, such as blog entries. As a programmer, it enables me to demonstrate functional code from blog posts stored in my database. In order to recognise these blocks of code, we use a made-up HTML tag: `<eval>[code to execute]</eval>`.
+
+In your body of text, ensure that code blocks to be evaluated are concatenated onto one line and surrounded by the `eval` tag.
+
+To have Captain's Log evaluate these code blocks in your texts, use the `captains_log` helper:
+
+  ```erb
+  <%= captains_log(@blog_post.body) %>
+  ```
+
+If `captains_log` isn't to your tastes, you can of course surround the helper in an alternative helper of your own. On my site, I use `badass_digest`:
+
+  ```ruby
+  def badass_digest(content)
+    captains_log(content)
+  end
+  ```
+
+Using your own alternative is then as easy as utilising the original:
+
+  ```erb
+  <%= badass_digest(@blog_post.body) %>
+  ```
